@@ -84,8 +84,8 @@
         .countdown {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            flex-wrap: nowrap;
+            gap: 10px;
             margin: 30px 0;
         }
         
@@ -157,13 +157,14 @@
         
         @media (max-width: 768px) {
             .countdown-number {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
             }
             
             .separator {
-                display: none;
+                font-size: 1.5rem;
+                margin: 0 -5px;
             }
             
             h1 {
@@ -177,33 +178,50 @@
             .message {
                 font-size: 1rem;
             }
+            
+            .countdown-item {
+                min-width: auto;
+            }
         }
         
         @media (max-width: 480px) {
             .countdown-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
             
             .countdown-item {
-                min-width: 70px;
+                min-width: auto;
             }
             
             .countdown-label {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
+            }
+            
+            .separator {
+                font-size: 1.2rem;
+                margin: 0 -8px;
             }
             
             h1 {
-                font-size: 1.7rem;
+                font-size: 1.5rem;
+                margin-bottom: 20px;
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+                margin: 20px 0;
             }
             
             .container {
-                padding: 25px 15px;
+                padding: 20px 10px;
+                width: 95%;
+            }
+            
+            .message {
+                font-size: 0.9rem;
+                padding: 15px 10px;
             }
         }
     </style>
@@ -246,7 +264,7 @@
         <h2>...ai miei 50 anni!</h2>
         
         <div class="message">
-            Mancano solo pochi giorni! Stai connesso per tutti gli aggiornamenti!
+            Stai connesso per tutti gli aggiornamenti!
         </div>
     </div>
 
