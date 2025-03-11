@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Da non perdere</title>
+    <meta property="og:title" content="m" />
+    <meta property="og:description" content="" />
+    <title>m</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
         
@@ -93,7 +95,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 100px;
+            position: relative;
+            min-width: 80px;
+            flex-shrink: 1;
         }
         
         .countdown-number {
@@ -153,6 +157,27 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             margin-bottom: 10px;
+        }
+        
+        .audio-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .audio-button:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         @media (max-width: 768px) {
@@ -263,8 +288,40 @@
         
         <h2>...ai miei 50 anni!</h2>
         
+        <h2 style="margin-top: 30px; margin-bottom: 5px;">...e</h2>
+        
+        <div class="countdown" id="secondCountdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days2">00</div>
+                <div class="countdown-label">Giorni</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours2">00</div>
+                <div class="countdown-label">Ore</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes2">00</div>
+                <div class="countdown-label">Minuti</div>
+            </div>
+            
+            <div class="separator">:</div>
+            
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds2">00</div>
+                <div class="countdown-label">Secondi</div>
+            </div>
+        </div>
+        
+        <h2>al party! 🎈🎈</h2>
+        
         <div class="message">
-            Stai connesso per tutti gli aggiornamenti!
+            Resta connesso per tutti gli aggiornamenti!
         </div>
     </div>
 
@@ -272,34 +329,54 @@
         // Data del compleanno: 25 marzo 2025
         const birthdayDate = new Date("2025-03-25T00:00:00").getTime();
         
+        // Data del party: 30 marzo 2025
+        const partyDate = new Date("2025-03-30T00:00:00").getTime();
+        
         // Aggiorna il countdown
         function updateCountdown() {
             const now = new Date().getTime();
-            const distance = birthdayDate - now;
+            const distance1 = birthdayDate - now;
+            const distance2 = partyDate - now;
             
-            if (distance < 0) {
+            // Primo countdown (compleanno)
+            if (distance1 < 0) {
                 document.getElementById("days").innerHTML = "00";
                 document.getElementById("hours").innerHTML = "00";
                 document.getElementById("minutes").innerHTML = "00";
                 document.getElementById("seconds").innerHTML = "00";
-                return;
+            } else {
+                const days = Math.floor(distance1 / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance1 % (1000 * 60)) / 1000);
+                
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
             }
             
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            // Secondo countdown (party)
+            if (distance2 < 0) {
+                document.getElementById("days2").innerHTML = "00";
+                document.getElementById("hours2").innerHTML = "00";
+                document.getElementById("minutes2").innerHTML = "00";
+                document.getElementById("seconds2").innerHTML = "00";
+            } else {
+                const days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+                const hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+                
+                document.getElementById("days2").innerHTML = days2.toString().padStart(2, '0');
+                document.getElementById("hours2").innerHTML = hours2.toString().padStart(2, '0');
+                document.getElementById("minutes2").innerHTML = minutes2.toString().padStart(2, '0');
+                document.getElementById("seconds2").innerHTML = seconds2.toString().padStart(2, '0');
+            }
         }
         
-        // Imposta l'immagine di sfondo
         document.addEventListener('DOMContentLoaded', function() {
-            // In un'implementazione reale, questo dovrebbe essere il percorso della tua immagine
-            // Per questo esempio, usiamo un placeholder finché non carichi l'immagine
+            // Imposta l'immagine di sfondo
             const bgElement = document.querySelector('.bg-image');
             bgElement.style.backgroundImage = 'url(photo.jpg)';
             
