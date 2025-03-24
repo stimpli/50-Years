@@ -180,6 +180,33 @@
             background: rgba(255, 255, 255, 0.3);
         }
         
+        /* Stile per il countdown principale */
+        .main-countdown {
+            transform: scale(1.2);
+            margin: 50px 0;
+        }
+        
+        /* Stile per il pulsante della mappa */
+        .map-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #e2b04a, #f9d878);
+            color: #000;
+            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(226, 176, 74, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .map-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(226, 176, 74, 0.4);
+        }
+        
         @media (max-width: 768px) {
             .countdown-number {
                 width: 60px;
@@ -206,6 +233,11 @@
             
             .countdown-item {
                 min-width: auto;
+            }
+            
+            .main-countdown {
+                transform: scale(1.1);
+                margin: 30px 0;
             }
         }
         
@@ -248,6 +280,16 @@
                 font-size: 0.9rem;
                 padding: 15px 10px;
             }
+            
+            .main-countdown {
+                transform: scale(1.05);
+                margin: 20px 0;
+            }
+            
+            .map-button {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -258,37 +300,7 @@
     <div class="container">
         <h1>Mancano solo...</h1>
         
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Giorni</div>
-            </div>
-            
-            <div class="separator">:</div>
-            
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Ore</div>
-            </div>
-            
-            <div class="separator">:</div>
-            
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Minuti</div>
-            </div>
-            
-            <div class="separator">:</div>
-            
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Secondi</div>
-            </div>
-        </div>
-        
-        <h2>...ai miei 50 anni! <span style="background: none; -webkit-background-clip: initial; background-clip: initial; color: initial;">👴🏻🦯</span></h2>
-        
-        <div class="countdown" id="secondCountdown">
+        <div class="countdown main-countdown" id="secondCountdown">
             <div class="countdown-item">
                 <div class="countdown-number" id="days2">00</div>
                 <div class="countdown-label">Giorni</div>
@@ -318,43 +330,25 @@
         
         <h2>...al party! <span style="background: none; -webkit-background-clip: initial; background-clip: initial; color: initial;">🎈🎈</span></h2>
         
+        <a href="https://g.co/kgs/p3ZV1ee" target="_blank" class="map-button">
+            Ci vediamo qui domenica alle 13:30
+        </a>
+        
         <div class="message">
             Resta connesso per tutti gli aggiornamenti!
         </div>
     </div>
 
     <script>
-        // Data del compleanno: 25 marzo 2025
-        const birthdayDate = new Date("2025-03-25T00:00:00").getTime();
-        
         // Data del party: 30 marzo 2025
         const partyDate = new Date("2025-03-30T00:00:00").getTime();
         
         // Aggiorna il countdown
         function updateCountdown() {
             const now = new Date().getTime();
-            const distance1 = birthdayDate - now;
             const distance2 = partyDate - now;
             
-            // Primo countdown (compleanno)
-            if (distance1 < 0) {
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
-            } else {
-                const days = Math.floor(distance1 / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance1 % (1000 * 60)) / 1000);
-                
-                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-            }
-            
-            // Secondo countdown (party)
+            // Countdown per il party
             if (distance2 < 0) {
                 document.getElementById("days2").innerHTML = "00";
                 document.getElementById("hours2").innerHTML = "00";
